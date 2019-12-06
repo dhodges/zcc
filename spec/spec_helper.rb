@@ -1,3 +1,8 @@
+require 'json'
+require 'require_all'
+
+require_all __dir__+'/../src'
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 RSpec.configure do |config|
@@ -10,4 +15,12 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+end
+
+def json_fixture fname
+  JSON.parse IO.read(__dir__+'/fixtures/'+fname)
+end
+
+def fixture_data
+  Loader.load_json_data(__dir__+'/fixtures/')
 end
