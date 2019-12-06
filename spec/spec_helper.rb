@@ -3,6 +3,11 @@ require 'require_all'
 
 require_all __dir__+'/../src'
 
+# see: https://github.com/colszowka/simplecov
+
+require 'simplecov'
+SimpleCov.start
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 RSpec.configure do |config|
