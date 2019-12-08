@@ -9,5 +9,6 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'pry'
   gem 'rspec'
+  gem 'simplecov'
   gem 'terminal-notifier-guard'
 end
