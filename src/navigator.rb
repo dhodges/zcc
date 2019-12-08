@@ -29,23 +29,23 @@ class Navigator
         init_readline
     end
 
-    def loop_for_input
+    def run
         puts USAGE
+        loop_for_input
+    end
 
+    def loop_for_input
         while search_term = next_line
             puts
-            if search_term.empty?
+            if search_term == '<IGNORE>'
                 next
+            elsif @search_path.count == 2
+                locate_and_show(search_term)
             elsif tab_completion_fields.include?(search_term)
                 @search_path.push search_term
                 loop_for_input
-            else 
-                case @search_path.count
-                when 2
-                    locate_and_show(search_term)
-                else
-                    puts "no items named: '#{search_term}' (try typing TAB key)\n\n"
-                end
+            else
+                puts "no items named: '#{search_term}' (try typing TAB key)\n\n"
             end
         end
     end
@@ -57,10 +57,10 @@ class Navigator
         case line
         when '..'
             @search_path.pop
-            ''
+            '<IGNORE>'
         when 'help'
             puts USAGE
-            ''
+            '<IGNORE>'
         when 'quit'
             exit(0)
         when 'q'

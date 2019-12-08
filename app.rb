@@ -16,7 +16,7 @@ if __FILE__==$0
     require_all __dir__+'/src'
 
     opts = gather_cmd_line_opts
-    Navigator.new(Loader.load_json_data(opts.jsondir)).loop_for_input
+    Navigator.new(Loader.load_json_data(opts.jsondir)).run
 
     puts 'bye!'
 end
