@@ -7,8 +7,8 @@ describe Finder do
 
     describe 'when locating which data array to search' do
         let(:search_path) { ['user', '_id'] }
-        let(:search_array) { subject.search_array(search_path) }
-        let(:result_ids) { search_array.map {|item| item['_id']}.sort }
+        let(:search_items) { subject.search_items(search_path) }
+        let(:result_ids) { search_items.map {|item| item['_id']}.sort }
         let(:expected_ids) { [*1..75] }
 
         it 'the correct results are found' do
