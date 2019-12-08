@@ -17,4 +17,6 @@ if __FILE__==$0
 
     opts = gather_cmd_line_opts
     Navigator.new(Loader.load_json_data(opts.jsondir)).loop_for_input
+
+    puts 'bye!'
 end

@@ -6,6 +6,21 @@ require_relative 'finder'
 stty_save = `stty -g`.chomp
 trap('INT') { system('stty', stty_save); exit }
 
+USAGE = """
+Welcome to Zendesk Zearch
+
+Search for organizations/tickets/users by attribute
+e.g. Enter 'user' to search all users           
+      then 'name' to search all users by name         
+                                                      
+Enter 'help' for this help info
+      '..'   to step back up the search fields
+      TAB    for suggestions
+      SPACE, RETURN and arrow keys to navigate search results
+      'quit' or 'q' to exit at any time
+
+"""
+
 # CLI navigation up & down the json hierarchy, searching for fields therein
 class Navigator
     def initialize(data)
@@ -15,6 +30,8 @@ class Navigator
     end
 
     def loop_for_input
+        puts USAGE
+
         while search_term = next_line
             puts
             if search_term.empty?
@@ -38,9 +55,16 @@ class Navigator
     def next_line
         line = Readline.readline(prompt, true).strip rescue nil # 2nd param 'true' == accumulate input history
         case line
-        when /\.\./
+        when '..'
             @search_path.pop
             ''
+        when 'help'
+            puts USAGE
+            ''
+        when 'quit'
+            exit(0)
+        when 'q'
+            exit(0)
         else
             line
         end
