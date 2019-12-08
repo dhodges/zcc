@@ -1,5 +1,5 @@
 require 'readline'
-require 'tty-pager'
+require_relative 'display'
 require_relative 'finder'
 
 # see: http://bogojoker.com/readline/#handling_x2303c_interrupts
@@ -65,12 +65,9 @@ class Navigator
 
     def locate_and_show(search_term)
         results = Finder.new(@data).locate(@search_path, search_term)
-        puts describe(search_term, results)+"\n\n"
-        TTY::Pager.new.page(JSON.pretty_generate(results)+"\n\n") if results.count > 0
-    end
-
-    def describe(search_term, results)
-        "#{results.count} #{@search_path[0]}(s) found where #{@search_path.last} == '#{search_term}'"
+        if results
+            Display.to_screen(@search_path, search_term, results)
+        end
     end
 
     # for tab complete: provide an object instance of the current search target(s)
