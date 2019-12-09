@@ -5,6 +5,10 @@ class Display
         def to_screen(search_path, search_term, results)
             puts describe(search_path, search_term, results)+"\n\n"
             TTY::Pager.new.page(prettify(results)) if results.count > 0
+        rescue Errno::EPIPE
+            puts "ERROR: problem displaying all the results"
+            puts "Try reducing the scope of your search"
+            puts
         end
 
         def describe(search_path, search_term, results)
