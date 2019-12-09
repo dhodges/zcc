@@ -23,6 +23,8 @@ Enter 'help' for this help info
 
 # CLI navigation up & down the json hierarchy, searching for fields therein
 class Navigator
+    attr_reader :search_path
+    
     def initialize(data)
         @data = data
         @search_path = [] # accumulated sesarch fields, e.g. ['organization', 'name']
