@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem 'require_all'
 gem 'rb-readline'
+gem 'ruby-prof'
 gem 'tty-pager'
 
 group :development, :test do

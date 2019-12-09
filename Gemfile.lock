@@ -51,6 +51,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.0)
+    ruby-prof (1.0.0)
     shellany (0.0.1)
     simplecov (0.17.1)
       docile (~> 1.1)
@@ -83,6 +84,7 @@ DEPENDENCIES
   rb-readline
   require_all
   rspec
+  ruby-prof
   simplecov
   terminal-notifier-guard
   tty-pager
